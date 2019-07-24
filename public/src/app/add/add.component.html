@@ -1,0 +1,45 @@
+<div class="jumbotron">
+  <h2>Submit a movie and your review</h2>
+  <h3 class="text-danger">{{errors?.title?.message}}</h3>
+    <h3 class="text-danger">{{errors?.name?.message}}</h3>
+    <h3 class="text-danger">{{errors?.rating?.message}}</h3>
+    <h3 class="text-danger">{{errors?.review?.message}}</h3>
+  <form (submit)="postOneMovie()">
+      <p> {{ newMovie | json }} </p>
+    <div class="form-group row">
+        <p class="text-danger" *ngIf="!title.pristine && title.errors">Name needs to be at least 3 characters</p>
+      <label for="title" class="col-sm-2 col-form-label">Title</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control"  placeholder="title" name="title" #title="ngModel" required minlength="3" [(ngModel)]="newMovie.title">
+      </div>
+    </div>
+    <div class="form-group row">
+        <p class="text-danger" *ngIf="!name.pristine && name.errors">Name needs to be at least 3 characters</p>
+      <label for="name" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control"  placeholder="Name" name="name" #name="ngModel" required minlength="3" [(ngModel)]="newMovie.name">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="stars" class="col-sm-2 col-form-label">Stars</label>
+      <div class="col-sm-10">
+        <select name="rating" #rating="ngModel" required min='1' max='5' [(ngModel)]="newMovie.rating">
+          <option value="1">1 star</option>
+          <option value="2">2 star</option>
+          <option value="3">3 star</option>
+          <option value="4">4 star</option>
+          <option value="5">5 star</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+        <p class="text-danger" *ngIf="!review.pristine && review.errors">Name needs to be at least 3 characters</p>
+      <label for="review" class="col-sm-2 col-form-label">Your review</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" placeholder="Review" name="review" #review="ngModel" required minlength="3" [(ngModel)]="newMovie.review"></textarea>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-outline-dark bg-dark text-white" (click)="refresh()">Submit</button>
+    <button type="submit" class="btn btn-outline-dark bg-dark text-white">Cancel</button>
+  </form>
+</div>

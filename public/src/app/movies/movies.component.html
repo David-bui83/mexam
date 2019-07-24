@@ -1,0 +1,23 @@
+<div class="jumbotron">
+  <a class="btn btn-outline-dark bg-dark text-white float-right" [routerLink] = "['add']">Add a new movie</a>
+  <h2>Movie List</h2>
+  <table class="table table-dark mt-5">
+    <thead>
+      <tr>
+        <th>Movie title</th>
+        <th>Rating</th>
+        <th>Available Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies">
+        <td>{{movie.title}}</td>
+        <td>{{movie.rating}}</td>
+        <td>
+          <a [routerLink]="['view',movie._id]">Read reviews</a> | <a [routerLink]="['write', movie._id]">Write Reviews</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<router-outlet></router-outlet>
